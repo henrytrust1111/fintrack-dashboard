@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { Search, Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+// import { Input } from '@/components/ui/input'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Image from 'next/image'
 
@@ -60,9 +60,9 @@ export default function Header({ onMenuClick, searchQuery, onSearchChange }: Hea
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4"> 
           {/* Universal Search - Same behavior for desktop and mobile */}
-          <div className="flex items-center">
+          <div className="flex items-center border-none">
             {!searchExpanded ? (
               <Button
                 variant="ghost"
@@ -75,10 +75,10 @@ export default function Header({ onMenuClick, searchQuery, onSearchChange }: Hea
             ) : (
               <div className="relative flex items-center">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                <Input
+                <input
                   ref={searchInputRef}
                   placeholder="Search transactions..."
-                  className="pl-10 pr-10 w-48 md:w-64"
+                  className="pl-10 pr-10 w-48 md:w-64 outline-none border-b border-primary p-2"
                   value={searchQuery}
                   onChange={(e) => onSearchChange(e.target.value)}
                   onBlur={handleSearchBlur}
