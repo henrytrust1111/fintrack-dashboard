@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import SummaryCards from './SummaryCards'
 import TransactionTable from './TransactionTable'
 import { cn } from '@/lib/utils'
+import ShareModal from './ShareModal'
 
 const tabs = ['Overview', 'Transactions']
 const users = [
@@ -22,6 +23,7 @@ interface WalletLedgerProps {
 
 export default function WalletLedger({ searchQuery }: WalletLedgerProps) {
   const [activeTab, setActiveTab] = useState('Overview')
+  const [shareModalOpen, setShareModalOpen] = useState(false)
 
   return (
     <div className="p-4 lg:p-6 min-h-full">
@@ -35,7 +37,7 @@ export default function WalletLedger({ searchQuery }: WalletLedgerProps) {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <Button className="w-[78px] h-[36px] bg-[#4B8B9F] text-[#020303] hover:bg-[#367b91] rounded-3xl">Share</Button>
+          <Button  onClick={() => setShareModalOpen(true)} className="w-[78px] h-[36px] bg-[#4B8B9F] text-[#020303] hover:bg-[#367b91] rounded-3xl">Share</Button>
           <Button className='border border-[#49656e2f] rounded-2xl' variant="ghost" size="icon">
             <MoreHorizontal className="h-5 w-5" />
           </Button>
@@ -83,6 +85,12 @@ export default function WalletLedger({ searchQuery }: WalletLedgerProps) {
         </div>
       )}
       {activeTab === 'Transactions' && <TransactionTable searchQuery={searchQuery} />}
+
+       {/* Share Modal */}
+      <ShareModal
+        isOpen={shareModalOpen} 
+        onClose={() => setShareModalOpen(false)} 
+      />
     </div>
   )
 }
