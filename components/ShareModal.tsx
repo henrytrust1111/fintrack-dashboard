@@ -18,6 +18,7 @@ interface ShareModalProps {
   onClose: () => void
 }
 
+
 export default function ShareModal({ isOpen, onClose }: ShareModalProps) {
   const [copied, setCopied] = useState(false)
   const [selectedPermission, setSelectedPermission] = useState('view')
